@@ -8,4 +8,6 @@ public class dempPrueba {
 	
 	private int persona;
 
+	private String morochoddddd;
+
 }
