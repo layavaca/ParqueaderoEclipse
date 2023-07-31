@@ -4,6 +4,8 @@ public class dempPrueba {
 
 
 
-  morocho haciendo pruebas 
+ // morocho haciendo pruebas 
+	
+	private int persona;
 
 }
