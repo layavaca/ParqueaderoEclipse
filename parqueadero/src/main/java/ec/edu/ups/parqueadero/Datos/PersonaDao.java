@@ -23,12 +23,12 @@ public class PersonaDao implements Serializable {
 		em.merge(persona);
 	}
 	
-	public Persona read(String cedulaPer) {
+	public Persona read(int cedulaPer) {
 		Persona p = em.find(Persona.class, cedulaPer);
 		return p;
 	}
 	
-	public void delete(String cedulaPer) {
+	public void delete(int cedulaPer) {
 		Persona p = em.find(Persona.class, cedulaPer);
 		em.remove(p);
 	}
