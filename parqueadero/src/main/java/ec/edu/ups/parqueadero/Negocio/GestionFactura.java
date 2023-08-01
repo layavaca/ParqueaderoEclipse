@@ -4,15 +4,17 @@ import java.util.List;
 
 import ec.edu.ups.parqueadero.Datos.FacturaDao;
 import ec.edu.ups.parqueadero.Modelo.Factura;
+import ec.edu.ups.parqueadero.Modelo.Persona;
+import ec.edu.ups.parqueadero.Modelo.Ticket;
 import jakarta.inject.Inject;
 
 public class GestionFactura {
 	@Inject
 	private FacturaDao daoFactura;
 
-	public void guardarCliente(Factura factura) throws Exception {
+	public void guardarFactura(Factura factura) throws Exception {
 		if (!this.isCedulaValida(factura.getCodigoFac()))
-			throw new Exception("cedula incorrecta");
+			throw new Exception("Factura incorrecta");
 		if (daoFactura.read(factura.getCodigoFac()) == null) {
 			try {
 				daoFactura.insert(factura);
@@ -30,21 +32,29 @@ public class GestionFactura {
 			}
 		}
 	}
+	
+	public void eliminarFactura(int codigoFac)  throws Exception {
+		if (!this.isCedulaValida(codigoFac))
+			throw new Exception("cedula incorrecta");
+		if(daoFactura.read(codigoFac)!= null) {
+			try {
+				daoFactura.delete(codigoFac);
+			} catch (Exception e) {
+				throw new Exception("Error al eliminar:" + e.getMessage());
+				// TODO: handle exception
+			}
+		}			
+	}
 
-	public boolean isCedulaValida(int cedula) {
-		 String cedula1 = Integer.toString(cedula); 
+	public boolean isCedulaValida(int codigo) {
+		 String cedula1 = Integer.toString(codigo); 
 		return cedula1.length() == 10;
 	}
 
-	public void eliminarCliente(Factura factura) {
-		daoFactura.delete(factura.getCodigoFac());					
+	public void guardarFactura(int codigoFac, String nombreFac, String direccionFac, Persona persona, Ticket ticket) {
 	}
 
-	public void guardarClientes(String cedulaPer, String nombrePer, String direccionPer) {
-	}
-
-	public List<Factura> getClientes() {
+	public List<Factura> getFactura() {
 		return daoFactura.getAll();
 	}
-
 }

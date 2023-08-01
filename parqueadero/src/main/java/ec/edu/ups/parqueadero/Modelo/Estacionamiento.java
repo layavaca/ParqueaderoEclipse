@@ -12,7 +12,7 @@ public class Estacionamiento implements Serializable {
 	@GeneratedValue
 	private int codigoEst;
 	private String tipoEst;
-	private String lugarEst;
+	private int catidadEst;
 	public int getCodigoEst() {
 		return codigoEst;
 	}
@@ -25,15 +25,16 @@ public class Estacionamiento implements Serializable {
 	public void setTipoEst(String tipoEst) {
 		this.tipoEst = tipoEst;
 	}
-	public String getLugarEst() {
-		return lugarEst;
+	public int getCatidadEst() {
+		return catidadEst;
 	}
-	public void setLugarEst(String lugarEst) {
-		this.lugarEst = lugarEst;
+	public void setCatidadEst(int catidadEst) {
+		this.catidadEst = catidadEst;
 	}
 	@Override
 	public String toString() {
-		return "Estacionamiento [codigoEst=" + codigoEst + ", tipoEst=" + tipoEst + ", lugarEst=" + lugarEst + "]";
+		return "Estacionamiento [codigoEst=" + codigoEst + ", tipoEst=" + tipoEst + ", catidadEst=" + catidadEst + "]";
 	}
+	
 	
 }

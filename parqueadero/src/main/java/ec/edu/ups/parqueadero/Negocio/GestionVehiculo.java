@@ -9,9 +9,10 @@ import jakarta.inject.Inject;
 public class GestionVehiculo {
 	@Inject
 	private VehiculoDao daoVehiculo;
-	public void guardarCliente(Vehiculo vehiculo) throws Exception {
+
+	public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
 		if (!this.isPlacaValida(vehiculo.getPlacaVeh()))
-			throw new Exception("cedula incorrecta");
+			throw new Exception("vehiculo incorrecta");
 		if (daoVehiculo.read(vehiculo.getPlacaVeh()) == null) {
 			try {
 				daoVehiculo.insert(vehiculo);
@@ -29,20 +30,29 @@ public class GestionVehiculo {
 			}
 		}
 	}
+	
+	public void eliminarVehiculo(String placaVehi)  throws Exception {
+		if (!this.isPlacaValida(placaVehi))
+			throw new Exception("vehiculo incorrecta");
+		if(daoVehiculo.read(placaVehi)!= null) {
+			try {
+				daoVehiculo.delete(placaVehi);
+			} catch (Exception e) {
+				throw new Exception("Error al eliminar:" + e.getMessage());
+				// TODO: handle exception
+			}
+		}			
+	}
 
 	public boolean isPlacaValida(String placaVeh) {
-		 
+
 		return placaVeh.length() == 10;
 	}
 
-	public void eliminarCliente(Vehiculo vehiculo) {
-		daoVehiculo.delete(vehiculo.getPlacaVeh());					
+	public void guardarVehiculo(String placaVeh, String marcaVeh, String colorVeh) {
 	}
 
-	public void guardarClientes(String placaVeh, String marcaVeh, String colorVeh) {
-	}
-
-	public List<Vehiculo> getClientes() {
+	public List<Vehiculo> getVehiculo() {
 		return daoVehiculo.getAll();
 	}
 

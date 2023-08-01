@@ -34,16 +34,30 @@ public class GestionClientes {
 		}
 	}
 
+	public void eliminarCliente(int cedulaPer) throws Exception {
+		if (!this.isCedulaValida(cedulaPer))
+			throw new Exception("cedula incorrecta");
+		if (daoPersona.read(cedulaPer) != null) {
+			try {
+				daoPersona.delete(cedulaPer);
+			} catch (Exception e) {
+				throw new Exception("Error al eliminar:" + e.getMessage());
+				// TODO: handle exception
+			}
+		}
+	}
+
 	public boolean isCedulaValida(int cedula) {
-		 String cedula1 = Integer.toString(cedula); 
+		String cedula1 = Integer.toString(cedula);
 		return cedula1.length() == 10;
 	}
+	/*
+	 * public void eliminarCliente(Persona persona) {
+	 * daoPersona.delete(persona.getCedulaPer()); }
+	 */
 
-	public void eliminarCliente(Persona persona) {
-		daoPersona.delete(persona.getCedulaPer());					
-	}
-
-	public void guardarClientes(String cedulaPer, String nombrePer, String direccionPer) {
+	public void guardarClientes(String cedulaPer, String nombrePer, String apellidoPer, String telefonoPer,
+			String direccionPer) {
 	}
 
 	public List<Persona> getClientes() {
