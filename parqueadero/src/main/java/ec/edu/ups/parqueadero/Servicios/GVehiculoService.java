@@ -3,6 +3,7 @@ package ec.edu.ups.parqueadero.Servicios;
 import java.util.List;
 
 import ec.edu.ups.parqueadero.Modelo.Vehiculo;
+import ec.edu.ups.parqueadero.Negocio.GestionClientes;
 import ec.edu.ups.parqueadero.Negocio.GestionVehiculo;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -14,23 +15,26 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
 @Path("vehiculo")
 public class GVehiculoService {
 	@Inject
 	private GestionVehiculo gVehiculo;
+	@Inject 
+	private GestionClientes gcliente;
 
-	@POST
+
 	@Produces("application/json")
 	@Consumes("application/json")
 	public Response guardarCliente(Vehiculo vehiculo) {
 		try {
-			gVehiculo.guardarVehiculo(vehiculo);
+			gVehiculo.guardarVehiculos(vehiculo);
 			return Response.status(Response.Status.OK).entity(vehiculo).build();
-		} catch (Exception e) {
-			// TODO: handle exception
+		}catch(Exception e){
+			e.printStackTrace();
 			Error error = new Error();
 			error.setCodigo(99);
-			error.setMensaje("error al guardar:" + e.getMessage());
+			error.setMensaje("Error al guardar: " +e.getMessage());
 			return Response.status(Response.Status.OK).entity(error).build();
 		}
 	}

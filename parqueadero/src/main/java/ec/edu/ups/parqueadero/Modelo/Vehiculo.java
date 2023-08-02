@@ -18,8 +18,6 @@ import jakarta.persistence.OneToMany;
 public class Vehiculo {
 	
 	
-	@GeneratedValue
-	private int codigoVeh;
 	@Id
 	@Column(name="vehiculo_id")
 	private String placaVeh;
@@ -28,12 +26,7 @@ public class Vehiculo {
 	@ManyToOne
     private Persona propietario;
 	
-	public int getCodigoVeh() {
-		return codigoVeh;
-	}
-	public void setCodigoVeh(int codigoVeh) {
-		this.codigoVeh = codigoVeh;
-	}
+	
 	public String getPlacaVeh() {
 		return placaVeh;
 	}
@@ -62,7 +55,7 @@ public class Vehiculo {
     }
 	@Override
 	public String toString() {
-		return "Vehiculo [codigoVeh=" + codigoVeh + ", placaVeh=" + placaVeh + ", marcaVeh=" + marcaVeh + ", colorVeh="
+		return "Vehiculo [ placaVeh=" + placaVeh + ", marcaVeh=" + marcaVeh + ", colorVeh="
 				+ colorVeh + ", propietario=" + propietario + "]";
 	}
     

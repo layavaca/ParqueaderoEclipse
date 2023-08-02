@@ -6,28 +6,29 @@ import ec.edu.ups.parqueadero.Datos.VehiculoDao;
 import ec.edu.ups.parqueadero.Modelo.Vehiculo;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+
 @Stateless
 public class GestionVehiculo {
+	
 	@Inject
 	private VehiculoDao daoVehiculo;
-
-	public void guardarVehiculo(Vehiculo vehiculo) throws Exception {
-		if (!this.isPlacaValida(vehiculo.getPlacaVeh()))
-			throw new Exception("vehiculo incorrecta");
-		if (daoVehiculo.read(vehiculo.getPlacaVeh()) == null) {
+	
+	public void guardarVehiculos(Vehiculo vehiculo) throws Exception{
+		if(!this.isPlacaValida(vehiculo.getPlacaVeh())) 
+			throw new Exception("PLACA INCORRECTA");
+		
+		if (daoVehiculo.read(vehiculo.getPlacaVeh())==null) {
 			try {
 				daoVehiculo.insert(vehiculo);
-
 			} catch (Exception e) {
-				throw new Exception("Error al insertar:" + e.getMessage());
-				// TODO: handle exception
+				throw new Exception("Error al insertar: "+ e.getMessage());
 			}
-		} else {
+		}else {
 			try {
 				daoVehiculo.update(vehiculo);
+
 			} catch (Exception e) {
-				throw new Exception("Error al actualizar:" + e.getMessage());
-				// TODO: handle exception
+				throw new Exception("Error al actualizar: "+ e.getMessage());
 			}
 		}
 	}
@@ -50,7 +51,7 @@ public class GestionVehiculo {
 		return placaVeh.length() == 10;
 	}
 
-	public void guardarVehiculo(String placaVeh, String marcaVeh, String colorVeh) {
+	public void guardarVehiculos(String placaVeh, String marcaVeh, String colorVeh) {
 	}
 
 	public List<Vehiculo> getVehiculo() {
