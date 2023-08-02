@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -22,12 +23,8 @@ public class Factura implements Serializable{
 	private int codigoFac;
 	private String nombreFac;
 	private String direccionFac;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="per_cedula")
-	private Persona persona;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "Factura_id")
-	private List<Ticket> ticket;
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Persona propietarioCabecera;
 	public int getCodigoFac() {
 		return codigoFac;
 	}
@@ -46,32 +43,21 @@ public class Factura implements Serializable{
 	public void setDireccionFac(String direccionFac) {
 		this.direccionFac = direccionFac;
 	}
-	public Persona getPersona() {
-		return persona;
+	public Persona getPropietarioCabecera() {
+		return propietarioCabecera;
 	}
-	public void setPersona(Persona persona) {
-		this.persona = persona;
+	public void setPropietarioCabecera(Persona propietarioCabecera) {
+		this.propietarioCabecera = propietarioCabecera;
 	}
-	
-	public List<Ticket> getTicket() {
-		return ticket;
-	}
-	public void setTicket(List<Ticket> ticket) {
-		this.ticket = ticket;
-	}
-	
-	
-	public void addTicket(Ticket ticket) {
-		if(this.ticket == null)
-			this.ticket = new ArrayList<Ticket>();
-		this.ticket.add(ticket);
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	@Override
 	public String toString() {
 		return "Factura [codigoFac=" + codigoFac + ", nombreFac=" + nombreFac + ", direccionFac=" + direccionFac
-				+ ", persona=" + persona + ", ticket=" + ticket + "]";
+				+ ", propietarioCabecera=" + propietarioCabecera + "]";
 	}
 	
 	
-	
+
 }

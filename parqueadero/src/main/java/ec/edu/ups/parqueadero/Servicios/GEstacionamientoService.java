@@ -15,6 +15,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+@Path("estacionamiento")
 public class GEstacionamientoService {
 	@Inject
 	private GestionEstacionamiento gEstacionamiento;

@@ -4,8 +4,9 @@ import java.util.List;
 
 import ec.edu.ups.parqueadero.Datos.VehiculoDao;
 import ec.edu.ups.parqueadero.Modelo.Vehiculo;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-
+@Stateless
 public class GestionVehiculo {
 	@Inject
 	private VehiculoDao daoVehiculo;

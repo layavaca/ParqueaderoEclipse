@@ -38,4 +38,9 @@ public class PersonaDao implements Serializable {
 		Query q = em.createQuery(jpql);
 		return q.getResultList();
 	}
+	
+	//public List<Persona> getListAutos(String cedulaPer){
+		
+		
+
 }

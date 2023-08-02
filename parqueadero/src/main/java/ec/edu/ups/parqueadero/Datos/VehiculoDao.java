@@ -38,5 +38,15 @@ public class VehiculoDao implements Serializable{
 		Query q = em.createQuery(jpql);
 		return q.getResultList();
 	}
+	
+	public List<Vehiculo> getListAutos(String cedulaPer){
+		String jpql = "SELECT p FROM Vehiculo p WHERE propietario = :cedulaPer";
+		Query q = em.createQuery(jpql);
+		q.setParameter("cedulaPer", cedulaPer);
+		List<Vehiculo> lista=q.getResultList();
+		return lista;
+	}
+	
+	
 
 }

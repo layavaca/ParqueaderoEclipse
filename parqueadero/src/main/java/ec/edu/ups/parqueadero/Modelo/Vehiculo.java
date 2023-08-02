@@ -11,6 +11,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -24,8 +25,8 @@ public class Vehiculo {
 	private String placaVeh;
 	private String marcaVeh;
 	private String colorVeh;
-	@OneToMany(mappedBy = "vehiculo",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Ticket> ticket;
+	@ManyToOne
+    private Persona propietario;
 	
 	public int getCodigoVeh() {
 		return codigoVeh;
@@ -50,28 +51,21 @@ public class Vehiculo {
 	}
 	public void setColorVeh(String colorVeh) {
 		this.colorVeh = colorVeh;
-	}/*
-	public Persona getPersona() {
-		return persona;
 	}
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}*/
-	public List<Ticket> getTicket() {
-		return ticket;
-	}
-	public void setTicket(List<Ticket> ticket) {
-		this.ticket = ticket;
-	}
+	
+	public Persona getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Persona propietario) {
+        this.propietario = propietario;
+    }
 	@Override
 	public String toString() {
 		return "Vehiculo [codigoVeh=" + codigoVeh + ", placaVeh=" + placaVeh + ", marcaVeh=" + marcaVeh + ", colorVeh="
-				+ colorVeh + "	, ticket=" + ticket + "]";
+				+ colorVeh + ", propietario=" + propietario + "]";
 	}
-	public void addTicket(Ticket ticket) {
-		if(this.ticket == null)
-			this.ticket = new ArrayList<Ticket>();
-		this.ticket.add(ticket);
-	}
+    
+	
 	
 }

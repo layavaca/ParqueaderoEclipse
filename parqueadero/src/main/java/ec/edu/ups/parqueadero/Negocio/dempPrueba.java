@@ -40,24 +40,61 @@ public class dempPrueba {
 	public void init() {
 		 
 		System.out.println("Hola UPS");
-		
-		Vehiculo veh = new Vehiculo();
-		veh.setPlacaVeh("ABC0102");
-		veh.setMarcaVeh("Toyota");
-		veh.setColorVeh("Rojo");
-		daoVehiculo.insert(veh);
-		
 		Persona p1 = new Persona();
 		p1.setCedulaPer("0107083511");
 		p1.setDireccionPer("san joaquin");
 		p1.setNombrePer("noe");
 		p1.setApellidoPer("ayavaca");
 		p1.setCorreoPer("nayavaca@est.ups.edu.ec");
-		p1.setTelefonoPer("0988774158");		
+		p1.setTelefonoPer("0988774158");
 		
-		p1.addVehiculo(veh);
+		Vehiculo veh0 = new Vehiculo();
+		veh0.setPlacaVeh("ABC0102");
+		veh0.setMarcaVeh("Toyota");
+		veh0.setColorVeh("Rojo");
+		veh0.setPropietario(p1);
+		daoVehiculo.insert(veh0);
+		
 		
 		daoPersona.insert(p1);
+		Persona p2 = new Persona();
+		p2.setCedulaPer("1234083511");
+		p2.setDireccionPer("san joaquin");
+		p2.setNombrePer("jose");
+		p2.setApellidoPer("ayavaca");
+		p2.setCorreoPer("nayavaca@est.ups.edu.ec");
+		p2.setTelefonoPer("0988774158");				
+		daoPersona.insert(p2);
+	
+		
+		
+		Vehiculo veh = new Vehiculo();
+		veh.setPlacaVeh("ABC0111");
+		veh.setMarcaVeh("Toyota");
+		veh.setColorVeh("Negro");
+		veh.setPropietario(p1);
+		daoVehiculo.insert(veh);
+		
+		Estacionamiento est= new Estacionamiento();
+		est.setCatidadEst(10);
+		est.setTipoEst("privado");
+		
+		daoEstacionamiento.insert(est);
+		
+		Tarifa tar = new Tarifa();
+		tar.setValorTar(25);
+		tar.setTipoCostoTar("normal");
+		
+		
+		daoTarifa.insert(tar);
+		
+		Factura fac = new Factura();
+		fac.setNombreFac("Topsy");
+		fac.setDireccionFac("Americas");
+		fac.setPropietarioCabecera(p1);
+		daoFactura.insert(fac);
+		
+		
 		
 		Ticket tic = new Ticket();
 		tic.setFecha(new Timestamp(System.currentTimeMillis()));
@@ -65,37 +102,23 @@ public class dempPrueba {
 		tic.setHoraSalida("19:00");
 		tic.setMensaje("No votar");
 		tic.setVehiculo(veh);
+		tic.setEstacionamiento(est);
+		tic.setTarifa(tar);
+		tic.setFactura(fac);
 		
 		daoTicket.insert(tic);
 		
-		Estacionamiento est= new Estacionamiento();
-		est.setCatidadEst(10);
-		est.setTipoEst("privado");
-		est.addTicket(tic);
-		
-		daoEstacionamiento.insert(est);
-		
-		Tarifa tar = new Tarifa();
-		tar.setValorTar(25);
-		tar.setTipoCostoTar("normal");
-		tar.addTicket(tic);
-		
-		daoTarifa.insert(tar);
-		
-		Factura fac = new Factura();
-		fac.setNombreFac("Topsy");
-		fac.setDireccionFac("Americas");
-		fac.setPersona(p1);
-		fac.addTicket(tic);
-		
-		daoFactura.insert(fac);
-		
-		System.out.println("Hola Factura");
+	
 		
 		List<Factura> facturas = daoFactura.getAll();
 		for(Factura facq: facturas) {
-			System.out.println(facq);
-		
+			System.out.println(facq);		
 	}
+		/*System.out.println("Hola Factura lista dueño de vhiculo");
+		List<Vehiculo>lis= daoVehiculo.getListAutos("0107083511");
+		for(Vehiculo aux: lis) {
+			System.out.println(aux.getPlacaVeh()+"\t"+aux.getPropietario().getCedulaPer()+"\t"+"Hola Factura lista dueño de vhiculo");
+		}*/
+		
 	}
 }

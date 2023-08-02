@@ -18,9 +18,6 @@ public class Estacionamiento implements Serializable {
 	private int codigoEst;
 	private String tipoEst;
 	private int catidadEst;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "Estacionamiento_id") 
-	private List<Ticket> ticket;
 	public int getCodigoEst() {
 		return codigoEst;
 	}
@@ -39,22 +36,9 @@ public class Estacionamiento implements Serializable {
 	public void setCatidadEst(int catidadEst) {
 		this.catidadEst = catidadEst;
 	}
-	public List<Ticket> getTicket() {
-		return ticket;
-	}
-	public void setTicket(List<Ticket> ticket) {
-		this.ticket = ticket;
-	}
 	@Override
 	public String toString() {
-		return "Estacionamiento [codigoEst=" + codigoEst + ", tipoEst=" + tipoEst + ", catidadEst=" + catidadEst
-				+ ", ticket=" + ticket + "]";
+		return "Estacionamiento [codigoEst=" + codigoEst + ", tipoEst=" + tipoEst + ", catidadEst=" + catidadEst + "]";
 	}
-	
-	public void addTicket(Ticket ticket) {
-		if(this.ticket == null)
-			this.ticket = new ArrayList<Ticket>();
-		this.ticket.add(ticket);
-	}
-	
+
 }

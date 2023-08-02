@@ -18,9 +18,6 @@ public class Tarifa implements Serializable {
 	private int codigoTar;
 	private String tipoCostoTar;
 	private int valorTar;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name ="tarifa_id") 
-	private List<Ticket> ticket;
 	public int getCodigoTar() {
 		return codigoTar;
 	}
@@ -39,22 +36,9 @@ public class Tarifa implements Serializable {
 	public void setValorTar(int valorTar) {
 		this.valorTar = valorTar;
 	}
-	public List<Ticket> getTicket() {
-		return ticket;
-	}
-	public void setTicket(List<Ticket> ticket) {
-		this.ticket = ticket;
-	}
 	@Override
 	public String toString() {
-		return "Tarifa [codigoTar=" + codigoTar + ", tipoCostoTar=" + tipoCostoTar + ", valorTar=" + valorTar
-				+ ", ticket=" + ticket + "]";
-	}
-	public void addTicket(Ticket ticket) {
-		if(this.ticket == null)
-			this.ticket = new ArrayList<Ticket>();
-		this.ticket.add(ticket);
+		return "Tarifa [codigoTar=" + codigoTar + ", tipoCostoTar=" + tipoCostoTar + ", valorTar=" + valorTar + "]";
 	}
 	
-
 }

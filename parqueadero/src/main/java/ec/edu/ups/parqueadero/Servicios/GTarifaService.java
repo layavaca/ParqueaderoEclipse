@@ -4,6 +4,7 @@ import java.util.List;
 
 import ec.edu.ups.parqueadero.Modelo.Tarifa;
 import ec.edu.ups.parqueadero.Negocio.GestionTarifa;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -15,6 +16,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+@Path("tarifa")
 public class GTarifaService {
 	@Inject
 	private GestionTarifa gTarifa;

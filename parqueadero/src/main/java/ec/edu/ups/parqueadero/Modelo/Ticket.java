@@ -22,12 +22,13 @@ public class Ticket implements Serializable {
 	private String horaSalida;
 	private String mensaje;
 	@ManyToOne
-	@JoinColumn(name="Vehiculo_id")
 	private Vehiculo vehiculo;
-	//private Tarifa tarifa;
-	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    //@JoinColumn(name = "Ticket_id") 
-	//private List<Factura>factura;
+	@ManyToOne
+	private Factura factura;
+	@ManyToOne
+	private Tarifa tarifa;
+	@ManyToOne
+	private Estacionamiento estacionamiento;
 	public int getCodigoTic() {
 		return codigoTic;
 	}
@@ -64,23 +65,30 @@ public class Ticket implements Serializable {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	/*public Tarifa getTarifa() {
+	public Factura getFactura() {
+		return factura;
+	}
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
+	public Tarifa getTarifa() {
 		return tarifa;
 	}
 	public void setTarifa(Tarifa tarifa) {
 		this.tarifa = tarifa;
-	}*/
-	/*public List<Factura> getFactura() {
-		return factura;
 	}
-	public void setFactura(List<Factura> factura) {
-		this.factura = factura;
-	}*/
+	public Estacionamiento getEstacionamiento() {
+		return estacionamiento;
+	}
+	public void setEstacionamiento(Estacionamiento estacionamiento) {
+		this.estacionamiento = estacionamiento;
+	}
 	@Override
 	public String toString() {
 		return "Ticket [codigoTic=" + codigoTic + ", fecha=" + fecha + ", horaEntrada=" + horaEntrada + ", horaSalida="
-				+ horaSalida + ", mensaje=" + mensaje + ", vehiculo=" + vehiculo + "]";
+				+ horaSalida + ", mensaje=" + mensaje + ", vehiculo=" + vehiculo + ", factura=" + factura + ", tarifa="
+				+ tarifa + ", estacionamiento=" + estacionamiento + "]";
 	}
 	
-		
+	
 }

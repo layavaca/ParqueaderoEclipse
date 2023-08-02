@@ -60,7 +60,6 @@ public class GClienteService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPersona() {
 		List<Persona> listado = gClientes.getClientes();
-		personaDao.get
 		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 

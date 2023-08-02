@@ -14,7 +14,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
+@Path("vehiculo")
 public class GVehiculoService {
 	@Inject
 	private GestionVehiculo gVehiculo;
