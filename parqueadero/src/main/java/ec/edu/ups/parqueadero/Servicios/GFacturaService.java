@@ -2,6 +2,8 @@ package ec.edu.ups.parqueadero.Servicios;
 
 import java.util.List;
 
+
+import ec.edu.ups.parqueadero.Datos.FacturaDao;
 import ec.edu.ups.parqueadero.Modelo.Factura;
 import ec.edu.ups.parqueadero.Negocio.GestionFactura;
 import jakarta.inject.Inject;
@@ -15,9 +17,12 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-public class GFacturaService {
+@Path("factura")
+public class GFacturaService  {
 	@Inject
 	private GestionFactura gFactura;
+	@Inject
+	private FacturaDao daoFactura;
 
 	@POST
 	@Produces("application/json")
@@ -56,6 +61,14 @@ public class GFacturaService {
 	public Response getFactura() {
 		List<Factura> listado = gFactura.getFactura();
 		return Response.status(Response.Status.OK).entity(listado).build();
+	}
+	
+	@GET
+	@Path("lista")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Factura> getListadoFactura() {
+		return daoFactura.getAll();
+
 	}
 
 

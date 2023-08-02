@@ -6,8 +6,10 @@ import ec.edu.ups.parqueadero.Datos.FacturaDao;
 import ec.edu.ups.parqueadero.Modelo.Factura;
 import ec.edu.ups.parqueadero.Modelo.Persona;
 import ec.edu.ups.parqueadero.Modelo.Ticket;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 
+@Stateless
 public class GestionFactura {
 	@Inject
 	private FacturaDao daoFactura;

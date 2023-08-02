@@ -1,6 +1,6 @@
 package ec.edu.ups.parqueadero.Negocio;
 
-import java.util.List;
+import java.util.List;import javax.swing.CellEditor;
 
 import ec.edu.ups.parqueadero.Datos.PersonaDao;
 import ec.edu.ups.parqueadero.Modelo.Persona;
@@ -34,7 +34,7 @@ public class GestionClientes {
 		}
 	}
 
-	public void eliminarCliente(int cedulaPer) throws Exception {
+	public void eliminarCliente(String cedulaPer) throws Exception {
 		if (!this.isCedulaValida(cedulaPer))
 			throw new Exception("cedula incorrecta");
 		if (daoPersona.read(cedulaPer) != null) {
@@ -47,9 +47,9 @@ public class GestionClientes {
 		}
 	}
 
-	public boolean isCedulaValida(int cedula) {
-		String cedula1 = Integer.toString(cedula);
-		return cedula1.length() == 10;
+	public boolean isCedulaValida(String cedula) {
+		
+		return cedula.length() == 10;
 	}
 	/*
 	 * public void eliminarCliente(Persona persona) {
@@ -62,5 +62,19 @@ public class GestionClientes {
 
 	public List<Persona> getClientes() {
 		return daoPersona.getAll();
+		
+	}
+	public void listaCliente(String cedulaPer) throws Exception {
+		if (!this.isCedulaValida(cedulaPer))
+			throw new Exception("cedula incorrecta");
+		if (daoPersona.read(cedulaPer) != null) {
+			try {
+				daoPersona.getAll();
+				
+			} catch (Exception e) {
+				throw new Exception("Error al eliminar:" + e.getMessage());
+				// TODO: handle exception
+			}
+		}
 	}
 }

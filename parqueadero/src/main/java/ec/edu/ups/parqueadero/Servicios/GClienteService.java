@@ -2,8 +2,10 @@ package ec.edu.ups.parqueadero.Servicios;
 
 import java.util.List;
 
+import ec.edu.ups.parqueadero.Datos.PersonaDao;
 import ec.edu.ups.parqueadero.Modelo.Persona;
 import ec.edu.ups.parqueadero.Negocio.GestionClientes;
+import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -15,9 +17,12 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+@Path("cliente")
 public class GClienteService {
 	@Inject
 	private GestionClientes gClientes;
+	@Inject
+	private PersonaDao personaDao; 
 
 	@POST
 	@Produces("application/json")
@@ -37,7 +42,7 @@ public class GClienteService {
 
 	@DELETE
 	@Path("id{cedulaPer}")
-	public Response eliminarEntidad(@PathParam("cedulaPer") int cedulaPer) {
+	public Response eliminarEntidad(@PathParam("cedulaPer") String cedulaPer) {
 		try {
 			gClientes.eliminarCliente(cedulaPer);
 			return Response.status(Response.Status.OK).entity(cedulaPer).build();
@@ -55,6 +60,7 @@ public class GClienteService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getPersona() {
 		List<Persona> listado = gClientes.getClientes();
+		personaDao.get
 		return Response.status(Response.Status.OK).entity(listado).build();
 	}
 
