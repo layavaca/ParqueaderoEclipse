@@ -23,6 +23,7 @@ public class GVehiculoService {
 	@Inject 
 	private GestionClientes gcliente;
 
+	@POST
 
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -40,7 +41,7 @@ public class GVehiculoService {
 	}
 
 	@DELETE
-	@Path("id{placaVeh}")
+	@Path("id/{placaVeh}")
 	public Response eliminarVehiculo(@PathParam("placaVeh") String placaVeh) {
 		try {
 			gVehiculo.eliminarVehiculo(placaVeh);

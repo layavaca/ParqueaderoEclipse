@@ -41,7 +41,7 @@ public class GClienteService {
 	}
 
 	@DELETE
-	@Path("id{cedulaPer}")
+	@Path("id/{cedulaPer}")
 	public Response eliminarEntidad(@PathParam("cedulaPer") String cedulaPer) {
 		try {
 			gClientes.eliminarCliente(cedulaPer);

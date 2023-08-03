@@ -23,7 +23,7 @@ public class Vehiculo {
 	private String placaVeh;
 	private String marcaVeh;
 	private String colorVeh;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     private Persona propietario;
 	
 	

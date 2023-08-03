@@ -48,7 +48,7 @@ public class GestionVehiculo {
 
 	public boolean isPlacaValida(String placaVeh) {
 
-		return placaVeh.length() == 10;
+		return placaVeh.length() == 7;
 	}
 
 	public void guardarVehiculos(String placaVeh, String marcaVeh, String colorVeh) {
